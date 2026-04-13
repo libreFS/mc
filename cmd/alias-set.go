@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -72,11 +72,11 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. Add MinIO service under "myminio" alias. For security reasons turn off bash history momentarily.
+  1. Add libreFS service under "myminio" alias. For security reasons turn off bash history momentarily.
      {{.DisableHistory}}
      {{.Prompt}} {{.HelpName}} myminio http://localhost:9000 minio minio123
      {{.EnableHistory}}
-  2. Add MinIO service under "myminio" alias, to use dns style bucket lookup. For security reasons
+  2. Add libreFS service under "myminio" alias, to use dns style bucket lookup. For security reasons
      turn off bash history momentarily.
      {{.DisableHistory}}
      {{.Prompt}} {{.HelpName}} myminio http://localhost:9000 minio minio123 --api "s3v4" --path "off"

@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2023 MinIO, Inc.
+// Copyright (c) 2015-2023 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -47,7 +47,7 @@ var supportTopAPIFlags = []cli.Flag{
 
 var supportTopAPICmd = cli.Command{
 	Name:            "api",
-	Usage:           "summarize API events on MinIO server in real-time",
+	Usage:           "summarize API events on libreFS server in real-time",
 	Action:          mainSupportTopAPI,
 	OnUsageError:    onUsageError,
 	Before:          setGlobalsFromContext,
@@ -85,7 +85,7 @@ func mainSupportTopAPI(ctx *cli.Context) error {
 	alias, _ := url2Alias(aliasedURL)
 	validateClusterRegistered(alias, false)
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, err := newAdminClient(aliasedURL)
 	if err != nil {
 		fatalIf(err.Trace(aliasedURL), "Unable to initialize admin client.")

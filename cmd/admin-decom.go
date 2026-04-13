@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -30,7 +30,7 @@ var adminDecommissionSubcommands = []cli.Command{
 var adminDecommissionCmd = cli.Command{
 	Name:            "decommission",
 	Aliases:         []string{"decom"},
-	Usage:           "manage MinIO server pool decommissioning",
+	Usage:           "manage libreFS server pool decommissioning",
 	Action:          mainAdminDecommission,
 	Before:          setGlobalsFromContext,
 	Flags:           globalFlags,

@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -56,8 +56,8 @@ QUOTA
   units, so that "gi" refers to "gibibyte" or "GiB". A "b" at the end is
   also accepted. Without suffixes the unit is bytes.
 
-  The MinIO object scanner checks a bucket's quota each time it is scanned.
-  If the scanner determines a bucket has met or exceeded its quota, MinIO
+  The libreFS object scanner checks a bucket's quota each time it is scanned.
+  If the scanner determines a bucket has met or exceeded its quota, libreFS
   rejects subsequent object write requests until the scanner determines the
   bucket no longer exceeds its quota.
 
@@ -65,7 +65,7 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. Set hard quota of 1gb for a bucket "mybucket" on MinIO.
+  1. Set hard quota of 1gb for a bucket "mybucket" on libreFS.
      {{.Prompt}} {{.HelpName}} myminio/mybucket --size 1GB
 `,
 }
@@ -118,7 +118,7 @@ func mainQuotaSet(ctx *cli.Context) error {
 	args := ctx.Args()
 	aliasedURL := args.Get(0)
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, err := newAdminClient(aliasedURL)
 	fatalIf(err, "Unable to initialize admin connection.")
 

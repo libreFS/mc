@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -178,7 +178,7 @@ func (h stsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			response := []byte("<AssumeRoleWithWebIdentityResponse xmlns=\"https://sts.amazonaws.com/doc/2011-06-15/\"><AssumeRoleWithWebIdentityResult><AssumedRoleUser><Arn></Arn><AssumeRoleId></AssumeRoleId></AssumedRoleUser><Credentials><AccessKeyId>7NL5BR739GUQ0ZOD4JNB</AccessKeyId><SecretAccessKey>A2mxZSxPnHNhSduedUHczsXZpVSSssOLpDruUmTV</SecretAccessKey><Expiration>0001-01-01T00:00:00Z</Expiration><SessionToken>eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiI3Tkw1QlI3MzlHVVEwWk9ENEpOQiIsImV4cCI6MTY5OTYwMzMwNiwicGFyZW50IjoibWluaW8iLCJzZXNzaW9uUG9saWN5IjoiZXlKV1pYSnphVzl1SWpvaU1qQXhNaTB4TUMweE55SXNJbE4wWVhSbGJXVnVkQ0k2VzNzaVJXWm1aV04wSWpvaVFXeHNiM2NpTENKQlkzUnBiMjRpT2xzaVlXUnRhVzQ2S2lKZGZTeDdJa1ZtWm1WamRDSTZJa0ZzYkc5M0lpd2lRV04wYVc5dUlqcGJJbXR0Y3pvcUlsMTlMSHNpUldabVpXTjBJam9pUVd4c2IzY2lMQ0pCWTNScGIyNGlPbHNpY3pNNktpSmRMQ0pTWlhOdmRYSmpaU0k2V3lKaGNtNDZZWGR6T25Nek9qbzZLaUpkZlYxOSJ9.uuE_x7PO8QoPfUk9KzUELoAqxihIknZAvJLl5aYJjwpSjJYFTPLp6EvuyJX2hc18s9HzeiJ-vU0dPzsy50dXmg</SessionToken></Credentials></AssumeRoleWithWebIdentityResult><ResponseMetadata></ResponseMetadata></AssumeRoleWithWebIdentityResponse>")
 			w.Header().Set("Content-Length", strconv.Itoa(len(response)))
 			w.Header().Set("Content-Type", "application/xml")
-			w.Header().Set("Server", "MinIO")
+			w.Header().Set("Server", "libreFS")
 			w.Write(response)
 			return
 		}

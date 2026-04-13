@@ -1,6 +1,6 @@
-// Copyright (c) 2022 MinIO, Inc.
+// Copyright (c) 2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -72,7 +72,7 @@ func mainClusterBucketExport(ctx *cli.Context) error {
 	aliasedURL := args.Get(0)
 	console.SetColor("File", color.New(color.FgWhite, color.Bold))
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, err := newAdminClient(aliasedURL)
 	if err != nil {
 		fatalIf(err.Trace(aliasedURL), "Unable to initialize admin client.")

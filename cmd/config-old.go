@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -185,7 +185,7 @@ func newConfigV7() *configV7 {
 }
 
 func (c *configV7) loadDefaults() {
-	// MinIO server running locally.
+	// libreFS server running locally.
 	c.setHost("local", hostConfigV7{
 		URL:       "http://localhost:9000",
 		AccessKey: "",
@@ -209,25 +209,25 @@ func (c *configV7) loadDefaults() {
 		API:       "S3v2",
 	})
 
-	// MinIO anonymous server for demo.
+	// libreFS anonymous server for demo.
 	c.setHost("play", hostConfigV7{
-		URL:       "https://play.min.io",
+		URL:       "https://play.librefs.org",
 		AccessKey: "",
 		SecretKey: "",
 		API:       "S3v4",
 	})
 
-	// MinIO demo server with public secret and access keys.
+	// libreFS demo server with public secret and access keys.
 	c.setHost("player", hostConfigV7{
-		URL:       "https://play.min.io:9002",
+		URL:       "https://play.librefs.org:9002",
 		AccessKey: "Q3AM3UQ867SPQQA43P2F",
 		SecretKey: "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG",
 		API:       "S3v4",
 	})
 
-	// MinIO public download service.
+	// libreFS public download service.
 	c.setHost("dl", hostConfigV7{
-		URL:       "https://dl.min.io:9000",
+		URL:       "https://play.librefs.org:9000",
 		AccessKey: "",
 		SecretKey: "",
 		API:       "S3v4",
@@ -273,7 +273,7 @@ func (c *configV8) setHost(alias string, cfg hostConfigV8) {
 
 // load default values for missing entries.
 func (c *configV8) loadDefaults() {
-	// MinIO server running locally.
+	// libreFS server running locally.
 	c.setHost("local", hostConfigV8{
 		URL:       "http://localhost:9000",
 		AccessKey: "",
@@ -297,9 +297,9 @@ func (c *configV8) loadDefaults() {
 		API:       "S3v2",
 	})
 
-	// MinIO anonymous server for demo.
+	// libreFS anonymous server for demo.
 	c.setHost("play", hostConfigV8{
-		URL:       "https://play.min.io",
+		URL:       "https://play.librefs.org",
 		AccessKey: "Q3AM3UQ867SPQQA43P2F",
 		SecretKey: "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG",
 		API:       "S3v4",

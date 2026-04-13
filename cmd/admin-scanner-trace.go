@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -64,7 +64,7 @@ var adminScannerTraceFlags = []cli.Flag{
 
 var adminScannerTraceCmd = cli.Command{
 	Name:            "trace",
-	Usage:           "show trace for MinIO scanner operations",
+	Usage:           "show trace for libreFS scanner operations",
 	Action:          mainAdminScannerTrace,
 	OnUsageError:    onUsageError,
 	Before:          setGlobalsFromContext,
@@ -88,7 +88,7 @@ UNITS
   also accepted. Without suffixes the unit is bytes.
 
 EXAMPLES:
-  1. Show scanner trace for MinIO server
+  1. Show scanner trace for libreFS server
      {{.Prompt}} {{.HelpName}} myminio
 
   2. Show scanner trace for a specific path
@@ -148,7 +148,7 @@ func mainAdminScannerTrace(ctx *cli.Context) error {
 	for _, c := range colors {
 		console.SetColor(fmt.Sprintf("Node%d", c), color.New(c))
 	}
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, err := newAdminClient(aliasedURL)
 	if err != nil {
 		fatalIf(err.Trace(aliasedURL), "Unable to initialize admin client.")

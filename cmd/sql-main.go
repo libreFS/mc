@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -92,25 +92,25 @@ FLAGS:
   {{end}}{{end}}
 
 SERIALIZATION OPTIONS:
-  For query serialization options, refer to https://docs.min.io/community/minio-object-store/reference/minio-mc/mc-sql.html
+  For query serialization options, refer to https://librefs.org/docs/
 
 EXAMPLES:
   1. Run a query on a set of objects recursively on AWS S3.
      {{.Prompt}} {{.HelpName}} --recursive --query "select * from S3Object" s3/personalbucket/my-large-csvs/
 
-  2. Run a query on an object on MinIO.
+  2. Run a query on an object on libreFS.
      {{.Prompt}} {{.HelpName}} --query "select count(s.power) from S3Object s" myminio/iot-devices/power-ratio.csv
 
   3. Run a query on an encrypted object with customer provided keys.
      {{.Prompt}} {{.HelpName}} --enc-c "myminio/iot-devices=MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDA" \
          --query "select count(s.power) from S3Object s" myminio/iot-devices/power-ratio-encrypted.csv
 
-  4. Run a query on an object on MinIO in gzip format using ; as field delimiter,
+  4. Run a query on an object on libreFS in gzip format using ; as field delimiter,
      newline as record delimiter and file header to be used
      {{.Prompt}} {{.HelpName}} --compression GZIP --csv-input "rd=\n,fh=USE,fd=;" \
          --query "select count(s.power) from S3Object s" myminio/iot-devices/power-ratio.csv.gz
 
-  5. Run a query on an object on MinIO in gzip format using ; as field delimiter,
+  5. Run a query on an object on libreFS in gzip format using ; as field delimiter,
      newline as record delimiter and file header to be used
      {{.Prompt}} {{.HelpName}} --compression GZIP --csv-input "rd=\n,fh=USE,fd=;" \
          --json-output "rd=\n\n" --query "select * from S3Object" myminio/iot-devices/data.csv

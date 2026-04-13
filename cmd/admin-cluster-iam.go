@@ -1,6 +1,6 @@
-// Copyright (c) 2022 MinIO, Inc.
+// Copyright (c) 2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -26,7 +26,7 @@ var adminClusterIAMSubcommands = []cli.Command{
 
 var adminClusterIAMCmd = cli.Command{
 	Name:            "iam",
-	Usage:           "manage IAM info on MinIO cluster",
+	Usage:           "manage IAM info on libreFS cluster",
 	Action:          mainadminClusterIAM,
 	Before:          setGlobalsFromContext,
 	Flags:           globalFlags,

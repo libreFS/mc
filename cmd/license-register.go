@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -40,7 +40,7 @@ const (
 var licenseRegisterFlags = append([]cli.Flag{
 	cli.StringFlag{
 		Name:  "name",
-		Usage: "Specify the name to associate to this MinIO cluster in SUBNET",
+		Usage: "Specify the name to associate to this libreFS cluster in SUBNET",
 	},
 	cli.StringFlag{
 		Name:  "license",
@@ -50,7 +50,7 @@ var licenseRegisterFlags = append([]cli.Flag{
 
 var licenseRegisterCmd = cli.Command{
 	Name:         "register",
-	Usage:        "register with MinIO Subscription Network",
+	Usage:        "register with libreFS Subscription Network",
 	OnUsageError: onUsageError,
 	Action:       mainLicenseRegister,
 	Before:       setGlobalsFromContext,
@@ -65,20 +65,20 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. Register MinIO cluster at alias 'play' on SUBNET, using api key for auth
+  1. Register libreFS cluster at alias 'play' on SUBNET, using api key for auth
      {{.Prompt}} {{.HelpName}} play --api-key 08efc836-4289-dbd4-ad82-b5e8b6d25577
 
-  2. Register MinIO cluster at alias 'play' on SUBNET, using license file ./minio.license
+  2. Register libreFS cluster at alias 'play' on SUBNET, using license file ./minio.license
      {{.Prompt}} {{.HelpName}} play --license ./minio.license
 
-  3. Register MinIO cluster at alias 'play' on SUBNET, using api key for auth,
+  3. Register libreFS cluster at alias 'play' on SUBNET, using api key for auth,
      and "play-cluster" as the preferred name for the cluster on SUBNET.
      {{.Prompt}} {{.HelpName}} play --api-key 08efc836-4289-dbd4-ad82-b5e8b6d25577 --name play-cluster
 
-  4. Register MinIO cluster at alias 'play' on SUBNET in an airgapped environment
+  4. Register libreFS cluster at alias 'play' on SUBNET in an airgapped environment
      {{.Prompt}} {{.HelpName}} play --airgap
 
-  5. Register MinIO cluster at alias 'play' on SUBNET, using alias as the cluster name.
+  5. Register libreFS cluster at alias 'play' on SUBNET, using alias as the cluster name.
      This asks for SUBNET credentials if the cluster is not already registered.
      {{.Prompt}} {{.HelpName}} play
 `,
@@ -161,7 +161,7 @@ type SubnetMFAReq struct {
 }
 
 func isPlay(endpoint url.URL) (bool, error) {
-	playEndpoint := "https://play.min.io"
+	playEndpoint := "https://play.librefs.org"
 	if globalAirgapped {
 		return endpoint.String() == playEndpoint, nil
 	}
@@ -277,7 +277,7 @@ func mainLicenseRegister(ctx *cli.Context) error {
 }
 
 func getAdminInfo(aliasedURL string) madmin.InfoMessage {
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client := getClient(aliasedURL)
 
 	// Fetch info of all servers (cluster or single server)

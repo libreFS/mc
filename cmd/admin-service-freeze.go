@@ -1,6 +1,6 @@
-// Copyright (c) 2022 MinIO, Inc.
+// Copyright (c) 2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -27,7 +27,7 @@ import (
 
 var adminServiceFreezeCmd = cli.Command{
 	Name:         "freeze",
-	Usage:        "freeze S3 API calls on MinIO cluster",
+	Usage:        "freeze S3 API calls on libreFS cluster",
 	Action:       mainAdminServiceFreeze,
 	OnUsageError: onUsageError,
 	Before:       setGlobalsFromContext,
@@ -43,7 +43,7 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. Freeze all S3 API calls on MinIO server at 'myminio/'.
+  1. Freeze all S3 API calls on libreFS server at 'myminio/'.
      {{.Prompt}} {{.HelpName}} myminio/
 `,
 }
@@ -89,7 +89,7 @@ func mainAdminServiceFreeze(ctx *cli.Context) error {
 	client, err := newAdminClient(aliasedURL)
 	fatalIf(err, "Unable to initialize admin connection.")
 
-	// Freeze the specified MinIO server
+	// Freeze the specified libreFS server
 	fatalIf(probe.NewError(client.ServiceFreezeV2(globalContext)), "Unable to freeze the server.")
 
 	// Success..

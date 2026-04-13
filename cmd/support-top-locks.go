@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -45,7 +45,7 @@ var supportTopLocksFlag = []cli.Flag{
 
 var supportTopLocksCmd = cli.Command{
 	Name:         "locks",
-	Usage:        "list all active locks on a MinIO cluster",
+	Usage:        "list all active locks on a libreFS cluster",
 	Before:       setGlobalsFromContext,
 	Action:       mainSupportTopLocks,
 	OnUsageError: onUsageError,
@@ -60,7 +60,7 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. List oldest locks on a MinIO cluster.
+  1. List oldest locks on a libreFS cluster.
      {{.Prompt}} {{.HelpName}} myminio/
 `,
 }
@@ -74,7 +74,7 @@ type lockMessage struct {
 // String colorized oldest locks message.
 func (u lockMessage) String() string {
 	elapsed := u.Lock.Elapsed
-	// elapsed can be zero with older MinIO versions,
+	// elapsed can be zero with older libreFS versions,
 	// so this code is deprecated and can be removed later.
 	if elapsed == 0 {
 		elapsed = time.Now().UTC().Sub(u.Lock.Timestamp)
@@ -146,7 +146,7 @@ func mainSupportTopLocks(ctx *cli.Context) error {
 	console.SetColor("Lock", color.New(color.FgBlue, color.Bold))
 	console.SetColor("Headers", color.New(color.FgGreen, color.Bold))
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, err := newAdminClient(aliasedURL)
 	fatalIf(err, "Unable to initialize admin connection.")
 

@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2023 MinIO, Inc.
+// Copyright (c) 2015-2023 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -84,13 +84,13 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. Upload MinIO diagnostics report for cluster with alias 'myminio' to SUBNET
+  1. Upload libreFS diagnostics report for cluster with alias 'myminio' to SUBNET
      {{.Prompt}} {{.HelpName}} myminio
 
-  2. Generate MinIO diagnostics report for cluster with alias 'myminio', save and upload to SUBNET manually
+  2. Generate libreFS diagnostics report for cluster with alias 'myminio', save and upload to SUBNET manually
      {{.Prompt}} {{.HelpName}} myminio --airgap
 
-  3. Upload MinIO diagnostics report for cluster with alias 'myminio' to SUBNET, with strict anonymization
+  3. Upload libreFS diagnostics report for cluster with alias 'myminio' to SUBNET, with strict anonymization
      {{.Prompt}} {{.HelpName}} myminio --anonymize=strict
 `,
 }
@@ -101,7 +101,7 @@ type supportDiagMessage struct {
 
 // String colorized status message
 func (s supportDiagMessage) String() string {
-	return console.Colorize(supportSuccessMsgTag, "MinIO diagnostics report was successfully uploaded to SUBNET.")
+	return console.Colorize(supportSuccessMsgTag, "libreFS diagnostics report was successfully uploaded to SUBNET.")
 }
 
 // JSON jsonified status message
@@ -122,7 +122,7 @@ func checkSupportDiagSyntax(ctx *cli.Context) {
 	}
 }
 
-// compress and tar MinIO diagnostics output
+// compress and tar libreFS diagnostics output
 func tarGZ(healthInfo any, version, filename string) error {
 	data, e := TarGZHealthInfo(healthInfo, version)
 	if e != nil {
@@ -143,13 +143,13 @@ func tarGZ(healthInfo any, version, filename string) error {
 		warningMsgHeader := infoText(warningMsgBoundary)
 		warningMsgTrailer := infoText(warningMsgBoundary)
 		console.Printf("%s\n%s\n%s\n%s\n", warningMsgHeader, warning, warningContents, warningMsgTrailer)
-		console.Infoln("MinIO diagnostics report saved at ", filename)
+		console.Infoln("libreFS diagnostics report saved at ", filename)
 	}
 
 	return nil
 }
 
-// TarGZHealthInfo - compress and tar MinIO diagnostics output
+// TarGZHealthInfo - compress and tar libreFS diagnostics output
 func TarGZHealthInfo(healthInfo any, version string) ([]byte, error) {
 	buffer := bytes.NewBuffer(nil)
 	gzWriter := gzip.NewWriter(buffer)
@@ -201,7 +201,7 @@ func mainSupportDiag(ctx *cli.Context) error {
 		apiKey = validateClusterRegistered(alias, true)
 	}
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client := getClient(aliasedURL)
 
 	// Main execution
@@ -239,7 +239,7 @@ func execSupportDiag(ctx *cli.Context, client *madmin.AdminClient, alias, apiKey
 	}
 
 	e = tarGZ(healthInfo, version, filename)
-	fatalIf(probe.NewError(e), "Unable to save MinIO diagnostics report")
+	fatalIf(probe.NewError(e), "Unable to save libreFS diagnostics report")
 
 	if !globalAirgapped {
 		_, e = (&SubnetFileUploader{
@@ -249,7 +249,7 @@ func execSupportDiag(ctx *cli.Context, client *madmin.AdminClient, alias, apiKey
 			Headers:           headers,
 			DeleteAfterUpload: true,
 		}).UploadFileToSubnet()
-		fatalIf(probe.NewError(e), "Unable to upload MinIO diagnostics report to SUBNET portal")
+		fatalIf(probe.NewError(e), "Unable to upload libreFS diagnostics report to SUBNET portal")
 
 		printMsg(supportDiagMessage{})
 	}
@@ -398,7 +398,7 @@ func fetchServerDiagInfo(ctx *cli.Context, client *madmin.AdminClient) (any, str
 			progressV0(info)
 		}
 
-		// Old minio versions don't return the MinIO info in
+		// Old minio versions don't return the libreFS info in
 		// response of the healthinfo api. So fetch it separately
 		minioInfo, e := client.ServerInfo(globalContext)
 		if e != nil {

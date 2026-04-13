@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -236,7 +236,7 @@ type ServerStats struct {
 
 func fetchAdminInfo(admClnt *madmin.AdminClient) (madmin.InfoMessage, error) {
 	ctx, cancel := context.WithTimeout(globalContext, 3*time.Second)
-	// Fetch the service status of the specified MinIO server
+	// Fetch the service status of the specified libreFS server
 	info, e := admClnt.ServerInfo(ctx)
 	cancel()
 	if e == nil {

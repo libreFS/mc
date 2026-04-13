@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2023 MinIO, Inc.
+// Copyright (c) 2015-2023 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -29,7 +29,7 @@ var supportTopSubcommands = []cli.Command{
 
 var supportTopCmd = cli.Command{
 	Name:            "top",
-	Usage:           "provide top like statistics for MinIO",
+	Usage:           "provide top like statistics for libreFS",
 	Action:          mainSupportTop,
 	Before:          setGlobalsFromContext,
 	Flags:           globalFlags,

@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -82,25 +82,25 @@ USAGE:
   {{.HelpName}} ALIAS ACCOUNT [FLAGS]
 
 ACCOUNT:
-  An account could be a regular MinIO user, STS or LDAP user.
+  An account could be a regular libreFS user, STS or LDAP user.
 
 FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. Add a new service account for user 'foobar' to MinIO server with a name and description.
+  1. Add a new service account for user 'foobar' to libreFS server with a name and description.
      {{.Prompt}} {{.HelpName}} myminio foobar --name uploaderKey --description "foobar uploader scripts"
 
-  2. Add a new service account to MinIO server with specified access key and secret key for user 'foobar'.
+  2. Add a new service account to libreFS server with specified access key and secret key for user 'foobar'.
      {{.Prompt}} {{.HelpName}} myminio foobar --access-key "myaccesskey" --secret-key "mysecretkey"
 
-  3. Add a new service account to MinIO server with specified access key and random secret key for user 'foobar'.
+  3. Add a new service account to libreFS server with specified access key and random secret key for user 'foobar'.
      {{.Prompt}} {{.HelpName}} myminio foobar --access-key "myaccesskey"
 
-  4. Add a new service account to MinIO server with specified secret key and random access key for user 'foobar'.
+  4. Add a new service account to libreFS server with specified secret key and random access key for user 'foobar'.
      {{.Prompt}} {{.HelpName}} myminio foobar --secret-key "mysecretkey"
 
-  5. Add a new service account to MinIO server with specified expiry date in the future for user 'foobar'.
+  5. Add a new service account to libreFS server with specified expiry date in the future for user 'foobar'.
      {{.Prompt}} {{.HelpName}} myminio foobar --expiry 2023-06-24T10:00:00-07:00
 `,
 }
@@ -145,7 +145,7 @@ const (
 
 	stsAccOpInfo
 
-	// Maximum length for MinIO access key.
+	// Maximum length for libreFS access key.
 	// There is no max length enforcement for access keys
 	accessKeyMaxLen = 20
 
@@ -158,7 +158,7 @@ const (
 	// Total length of the alpha numeric table.
 	alphaNumericTableLen = byte(len(alphaNumericTable))
 
-	// Maximum secret key length for MinIO, this
+	// Maximum secret key length for libreFS, this
 	// is used when autogenerating new credentials.
 	// There is no max length enforcement for secret keys
 	secretKeyMaxLen = 40
@@ -304,7 +304,7 @@ func mainAdminUserSvcAcctAdd(ctx *cli.Context) error {
 		}
 	}
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, err := newAdminClient(aliasedURL)
 	fatalIf(err, "Unable to initialize admin connection.")
 

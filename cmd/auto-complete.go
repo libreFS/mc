@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -314,7 +314,7 @@ var completeCmds = map[string]complete.Predictor{
 
 	"/undo": s3Completer,
 
-	// Admin API commands MinIO only.
+	// Admin API commands libreFS only.
 	"/admin/heal": s3Completer,
 
 	"/admin/info": aliasCompleter,

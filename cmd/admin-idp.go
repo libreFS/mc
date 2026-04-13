@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,7 @@ import "github.com/minio/cli"
 
 var adminIDPCmd = cli.Command{
 	Name:            "idp",
-	Usage:           "manage MinIO IDentity Provider server configuration",
+	Usage:           "manage libreFS IDentity Provider server configuration",
 	Action:          mainAdminIDP,
 	Before:          setGlobalsFromContext,
 	Flags:           globalFlags,

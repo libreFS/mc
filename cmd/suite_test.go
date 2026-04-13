@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2024 MinIO, Inc.
+// Copyright (c) 2015-2024 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -2596,7 +2596,7 @@ func validateObjectMetaData(t *testing.T, file *testFile) {
 // 		log.Println(file.MinioLS)
 // 		log.Println(file.extension)
 // 		log.Println(file.MinioStat)
-// 		t.Fatalf("Content types on file (%s) do not match, extension(%s) File(%s) MinIO object(%s)", file.fileNameWithPrefix, file.extension, contentType, file.MinioStat.Metadata["Content-Type"])
+// 		t.Fatalf("Content types on file (%s) do not match, extension(%s) File(%s) libreFS object(%s)", file.fileNameWithPrefix, file.extension, contentType, file.MinioStat.Metadata["Content-Type"])
 // 	}
 // }
 

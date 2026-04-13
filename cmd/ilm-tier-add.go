@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -139,7 +139,7 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. Configure a new remote tier which transitions objects to a bucket in a MinIO deployment:
+  1. Configure a new remote tier which transitions objects to a bucket in a libreFS deployment:
      {{.Prompt}} {{.HelpName}} minio myminio WARM-MINIO-TIER --endpoint https://warm-minio.com \
         --access-key ACCESSKEY --secret-key SECRETKEY --bucket mybucket --prefix myprefix/
 
@@ -170,7 +170,7 @@ func checkAdminTierAddSyntax(ctx *cli.Context) {
 	}
 }
 
-// The list of AWS S3 storage classes that can be used with MinIO ILM tiering
+// The list of AWS S3 storage classes that can be used with libreFS ILM tiering
 var supportedAWSTierSC = []string{"STANDARD", "REDUCED_REDUNDANCY", "STANDARD_IA"}
 
 // fetchTierConfig returns a TierConfig given a tierName, a tierType and ctx to
@@ -178,7 +178,7 @@ var supportedAWSTierSC = []string{"STANDARD", "REDUCED_REDUNDANCY", "STANDARD_IA
 // the flags contain invalid values.
 func fetchTierConfig(ctx *cli.Context, tierName string, tierType madmin.TierType) *madmin.TierConfig {
 	switch tierType {
-	case madmin.MinIO:
+	case madmin.libreFS:
 		accessKey := ctx.String("access-key")
 		secretKey := ctx.String("secret-key")
 		if accessKey == "" || secretKey == "" {
@@ -206,7 +206,7 @@ func fetchTierConfig(ctx *cli.Context, tierName string, tierType madmin.TierType
 		}
 
 		minioCfg, e := madmin.NewTierMinIO(tierName, endpoint, accessKey, secretKey, bucket, minioOpts...)
-		fatalIf(probe.NewError(e), "Invalid configuration for MinIO tier")
+		fatalIf(probe.NewError(e), "Invalid configuration for libreFS tier")
 
 		return minioCfg
 
@@ -417,7 +417,7 @@ func mainAdminTierAdd(ctx *cli.Context) error {
 		fatalIf(errInvalidArgument(), "Tier name can't be empty")
 	}
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, cerr := newAdminClient(aliasedURL)
 	fatalIf(cerr, "Unable to initialize admin connection.")
 

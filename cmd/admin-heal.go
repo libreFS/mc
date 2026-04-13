@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2024 MinIO, Inc.
+// Copyright (c) 2015-2024 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -110,7 +110,7 @@ var adminHealFlags = []cli.Flag{
 
 var adminHealCmd = cli.Command{
 	Name:            "heal",
-	Usage:           "monitor healing for bucket(s) and object(s) on MinIO server",
+	Usage:           "monitor healing for bucket(s) and object(s) on libreFS server",
 	Action:          mainAdminHeal,
 	OnUsageError:    onUsageError,
 	Before:          setGlobalsFromContext,
@@ -668,7 +668,7 @@ func mainAdminHeal(ctx *cli.Context) error {
 	console.SetColor("DiskFailed", color.New(color.FgRed, color.Bold))
 	console.SetColor("NodeFailed", color.New(color.FgRed, color.Bold))
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	adminClnt, err := newAdminClient(aliasedURL)
 	if err != nil {
 		fatalIf(err.Trace(aliasedURL), "Unable to initialize admin client.")

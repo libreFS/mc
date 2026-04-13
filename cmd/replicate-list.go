@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -150,7 +150,7 @@ func mainReplicateList(cliCtx *cli.Context) error {
 			"Unable to list replication configuration")
 	}
 	printReplicateListHeader()
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	admClient, cerr := newAdminClient(aliasedURL)
 	fatalIf(cerr, "Unable to initialize admin connection.")
 	_, sourceBucket := url2Alias(args[0])

@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -176,7 +176,7 @@ ENVIRONMENT VARIABLES:
   MC_ENC_S3: S3 encryption key in the form of (alias/prefix=key).
 
 EXAMPLES:
-  01. Mirror a bucket recursively from MinIO cloud storage to a bucket on Amazon S3 cloud storage.
+  01. Mirror a bucket recursively from libreFS cloud storage to a bucket on Amazon S3 cloud storage.
       {{.Prompt}} {{.HelpName}} play/photos/2014 s3/backup-photos
 
   02. Mirror a local folder recursively to Amazon S3 cloud storage.
@@ -191,11 +191,11 @@ EXAMPLES:
   05. Mirror a bucket from aliased Amazon S3 cloud storage to a local folder use '--overwrite' to overwrite destination.
       {{.Prompt}} {{.HelpName}} --overwrite s3/miniocloud miniocloud-backup
 
-  06. Mirror a bucket from MinIO cloud storage to a bucket on Amazon S3 cloud storage and remove any extraneous
+  06. Mirror a bucket from libreFS cloud storage to a bucket on Amazon S3 cloud storage and remove any extraneous
       files on Amazon S3 cloud storage.
       {{.Prompt}} {{.HelpName}} --remove play/photos/2014 s3/backup-photos/2014
 
-  07. Continuously mirror a local folder recursively to MinIO cloud storage. '--watch' continuously watches for
+  07. Continuously mirror a local folder recursively to libreFS cloud storage. '--watch' continuously watches for
       new objects, uploads and removes extraneous files on Amazon S3 cloud storage.
       {{.Prompt}} {{.HelpName}} --remove --watch /var/lib/backups play/backups
 

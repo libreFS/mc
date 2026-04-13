@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -86,7 +86,7 @@ EXAMPLES:
   7. Create a new bucket on Amazon S3 cloud storage in region 'us-west-2' with object lock enabled.
      {{.Prompt}} {{.HelpName}} --with-lock --region=us-west-2 s3/myregionbucket
 
-  8. Create a new bucket on MinIO with versioning enabled.
+  8. Create a new bucket on libreFS with versioning enabled.
      {{.Prompt}} {{.HelpName}} --with-versioning myminio/myversionedbucket
 `,
 }

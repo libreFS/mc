@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -66,7 +66,7 @@ func NewAdminFactory() func(config *Config) (*madmin.AdminClient, *probe.Error) 
 
 			creds := credentials.NewChainCredentials(credsChain)
 
-			// Not found. Instantiate a new MinIO
+			// Not found. Instantiate a new libreFS
 			var e error
 			api, e = madmin.NewWithOptions(hostName, &madmin.Options{
 				Creds:  creds,
@@ -82,7 +82,7 @@ func NewAdminFactory() func(config *Config) (*madmin.AdminClient, *probe.Error) 
 			// Set app info.
 			api.SetAppInfo(config.AppName, config.AppVersion)
 
-			// Cache the new MinIO Client with hash of config as key.
+			// Cache the new libreFS Client with hash of config as key.
 			clientCache[confSum] = api
 		}
 

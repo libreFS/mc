@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -65,7 +65,7 @@ func mainAdminTierVerify(ctx *cli.Context) error {
 		fatalIf(errInvalidArgument(), "Tier name can't be empty")
 	}
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, cerr := newAdminClient(aliasedURL)
 	fatalIf(cerr, "Unable to initialize admin connection.")
 

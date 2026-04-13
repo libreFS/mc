@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -190,7 +190,7 @@ func traceCallsHelp() string {
 
 var adminTraceCmd = cli.Command{
 	Name:            "trace",
-	Usage:           "Show HTTP call trace for all incoming and internode on MinIO",
+	Usage:           "Show HTTP call trace for all incoming and internode on libreFS",
 	Action:          mainAdminTrace,
 	OnUsageError:    onUsageError,
 	Before:          setGlobalsFromContext,
@@ -216,10 +216,10 @@ UNITS
   also accepted. Without suffixes the unit is bytes.
 
 EXAMPLES:
-  1. Show verbose console trace for MinIO server
+  1. Show verbose console trace for libreFS server
      {{.Prompt}} {{.HelpName}} -v -a myminio
 
-  2. Show trace only for failed requests for MinIO server
+  2. Show trace only for failed requests for libreFS server
     {{.Prompt}} {{.HelpName}} -v -e myminio
 
   3. Show verbose console trace for requests with '503' status code
@@ -570,7 +570,7 @@ func mainAdminTrace(ctx *cli.Context) error {
 			select {}
 		}()
 	} else {
-		// Create a new MinIO Admin Client
+		// Create a new libreFS Admin Client
 		aliasedURL := ctx.Args().Get(0)
 
 		client, err := newAdminClient(aliasedURL)

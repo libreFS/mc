@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -249,7 +249,7 @@ func objectTestVerboseResult(result *madmin.SpeedTestResult) (msg string) {
 }
 
 func objectTestShortResult(result *madmin.SpeedTestResult) (msg string) {
-	msg += fmt.Sprintf("MinIO %s, %d servers, %d drives, %s objects, %d threads",
+	msg += fmt.Sprintf("libreFS %s, %d servers, %d drives, %s objects, %d threads",
 		result.Version, result.Servers, result.Disks,
 		humanize.IBytes(uint64(result.Size)), result.Concurrent)
 
@@ -514,7 +514,7 @@ func savePerfResultFile(tmpFileName, resultFileNamePfx string) {
 	zipFileName := resultFileNamePfx + ".zip"
 	e := moveFile(tmpFileName, zipFileName)
 	fatalIf(probe.NewError(e), fmt.Sprintf("Unable to move %s -> %s", tmpFileName, zipFileName))
-	console.Infof("MinIO performance report saved at %s, please upload to SUBNET portal manually\n", zipFileName)
+	console.Infof("libreFS performance report saved at %s, please upload to SUBNET portal manually\n", zipFileName)
 }
 
 func runPerfTests(ctx *cli.Context, aliasedURL, perfType string) []PerfTestResult {
@@ -561,7 +561,7 @@ func writeJSONObjToZip(zipWriter *zip.Writer, obj any, filename string) error {
 	return gojson.NewEncoder(writer).Encode(obj)
 }
 
-// compress MinIO performance output
+// compress libreFS performance output
 func zipPerfResult(perfOutput PerfTestOutput, resultFilename string, regInfo ClusterRegistrationInfo) (string, error) {
 	// Create perf results zip file
 	tmpArchive, e := os.CreateTemp("", "mc-perf-*.zip")

@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2024 MinIO, Inc.
+// Copyright (c) 2015-2024 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -32,7 +32,7 @@ var adminAccesskeySubcommands = []cli.Command{
 
 var adminAccesskeyCmd = cli.Command{
 	Name:            "accesskey",
-	Usage:           "manage access keys defined in the MinIO server",
+	Usage:           "manage access keys defined in the libreFS server",
 	Action:          mainAdminAccesskey,
 	Before:          setGlobalsFromContext,
 	Flags:           globalFlags,

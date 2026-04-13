@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -294,7 +294,7 @@ func mainReplicateAdd(cliCtx *cli.Context) error {
 	default:
 		fatalIf(err.Trace(args...), "replication is not supported for filesystem")
 	}
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	admclient, cerr := newAdminClient(aliasedURL)
 	fatalIf(cerr, "unable to initialize admin connection.")
 

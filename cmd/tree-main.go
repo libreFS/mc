@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -95,16 +95,16 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-   1. List all buckets and directories on MinIO object storage server in tree format.
+   1. List all buckets and directories on libreFS object storage server in tree format.
       {{.Prompt}} {{.HelpName}} myminio
 
-   2. List all directories in "mybucket" on MinIO object storage server in tree format.
+   2. List all directories in "mybucket" on libreFS object storage server in tree format.
       {{.Prompt}} {{.HelpName}} myminio/mybucket/
 
-   3. List all directories in "mybucket" on MinIO object storage server hosted on Microsoft Windows in tree format.
+   3. List all directories in "mybucket" on libreFS object storage server hosted on Microsoft Windows in tree format.
       {{.Prompt}} {{.HelpName}} myminio\mybucket\
 
-   4. List all directories and objects in "mybucket" on MinIO object storage server in tree format.
+   4. List all directories and objects in "mybucket" on libreFS object storage server in tree format.
       {{.Prompt}} {{.HelpName}} --files myminio/mybucket/
 
    5. List all directories upto depth level '2' in tree format.

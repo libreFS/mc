@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -92,7 +92,7 @@ type SwInfoV1 struct {
 	OsInfo []madmin.ServerOsInfo `json:"osinfos,omitempty"`
 }
 
-// MinioHealthInfoV1 - Health info of the MinIO cluster
+// MinioHealthInfoV1 - Health info of the libreFS cluster
 type MinioHealthInfoV1 struct {
 	Info     madmin.InfoMessage      `json:"info,omitempty"`
 	Config   any                     `json:"config,omitempty"`

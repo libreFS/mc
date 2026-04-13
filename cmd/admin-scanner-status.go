@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -78,7 +78,7 @@ var adminScannerInfo = cli.Command{
 	Name:            "status",
 	Aliases:         []string{"info"},
 	HiddenAliases:   true,
-	Usage:           "summarize scanner events on MinIO server in real-time",
+	Usage:           "summarize scanner events on libreFS server in real-time",
 	Action:          mainAdminScannerInfo,
 	OnUsageError:    onUsageError,
 	Before:          setGlobalsFromContext,
@@ -245,7 +245,7 @@ func mainAdminScannerInfo(ctx *cli.Context) error {
 		os.Exit(0)
 	}
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	aliasedURL := ctx.Args().Get(0)
 	client, err := newAdminClient(aliasedURL)
 	fatalIf(err.Trace(aliasedURL), "Unable to initialize admin client.")

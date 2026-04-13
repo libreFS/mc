@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -48,7 +48,7 @@ USAGE:
   {{.HelpName}} TARGET POLICYNAME [OPTIONS...]
 
 POLICYNAME:
-  Name of the policy on the MinIO server.
+  Name of the policy on the libreFS server.
 
 FLAGS:
   {{range .VisibleFlags}}{{.}}
@@ -99,7 +99,7 @@ func mainAdminPolicyInfo(ctx *cli.Context) error {
 	aliasedURL := args.Get(0)
 	policyName := args.Get(1)
 
-	// Create a new MinIO Admin Client
+	// Create a new libreFS Admin Client
 	client, err := newAdminClient(aliasedURL)
 	fatalIf(err, "Unable to initialize admin connection")
 

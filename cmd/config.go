@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -36,12 +36,12 @@ import (
 // mcCustomConfigDir contains the whole path to config dir. Only access via get/set functions.
 var mcCustomConfigDir string
 
-// setMcConfigDir - set a custom MinIO Client config folder.
+// setMcConfigDir - set a custom libreFS Client config folder.
 func setMcConfigDir(configDir string) {
 	mcCustomConfigDir = configDir
 }
 
-// getMcConfigDir - construct MinIO Client config folder.
+// getMcConfigDir - construct libreFS Client config folder.
 func getMcConfigDir() (string, *probe.Error) {
 	if mcCustomConfigDir != "" {
 		return mcCustomConfigDir, nil
@@ -68,7 +68,7 @@ func defaultMCConfigDir() string {
 	return fmt.Sprintf(".%s/", filepath.Base(os.Args[0]))
 }
 
-// mustGetMcConfigDir - construct MinIO Client config folder or fail
+// mustGetMcConfigDir - construct libreFS Client config folder or fail
 func mustGetMcConfigDir() (configDir string) {
 	configDir, err := getMcConfigDir()
 	fatalIf(err.Trace(), "Unable to get mcConfigDir.")
@@ -76,7 +76,7 @@ func mustGetMcConfigDir() (configDir string) {
 	return configDir
 }
 
-// createMcConfigDir - create MinIO Client config folder
+// createMcConfigDir - create libreFS Client config folder
 func createMcConfigDir() *probe.Error {
 	p, err := getMcConfigDir()
 	if err != nil {
@@ -88,7 +88,7 @@ func createMcConfigDir() *probe.Error {
 	return nil
 }
 
-// getMcConfigPath - construct MinIO Client configuration path
+// getMcConfigPath - construct libreFS Client configuration path
 func getMcConfigPath() (string, *probe.Error) {
 	if mcCustomConfigDir != "" {
 		return filepath.Join(mcCustomConfigDir, globalMCConfigFile), nil

@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2022 MinIO, Inc.
+// Copyright (c) 2015-2022 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -69,16 +69,16 @@ FLAGS:
   {{range .VisibleFlags}}{{.}}
   {{end}}
 EXAMPLES:
-  1. Watch new S3 operations on a MinIO server
+  1. Watch new S3 operations on a libreFS server
      {{.Prompt}} {{.HelpName}} play/testbucket
 
-  2. Watch new events for a specific prefix "output/"  on MinIO server.
+  2. Watch new events for a specific prefix "output/"  on libreFS server.
      {{.Prompt}} {{.HelpName}} --prefix "output/" play/testbucket
 
-  3. Watch new events for a specific suffix ".jpg" on MinIO server.
+  3. Watch new events for a specific suffix ".jpg" on libreFS server.
      {{.Prompt}} {{.HelpName}} --suffix ".jpg" play/testbucket
 
-  4. Watch new events on a specific prefix and suffix on MinIO server.
+  4. Watch new events on a specific prefix and suffix on libreFS server.
      {{.Prompt}} {{.HelpName}} --suffix ".jpg" --prefix "photos/" play/testbucket
 
   5. Site level watch (except new buckets created after running this command)

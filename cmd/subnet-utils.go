@@ -1,6 +1,6 @@
-// Copyright (c) 2015-2024 MinIO, Inc.
+// Copyright (c) 2015-2024 libreFS, Inc.
 //
-// This file is part of MinIO Object Storage stack
+// This file is part of libreFS Object Storage stack
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -45,7 +45,7 @@ import (
 
 const (
 	subnetRespBodyLimit     = 1 << 20 // 1 MiB
-	minioSubscriptionURL    = "https://min.io/subscription"
+	minioSubscriptionURL    = "https://librefs.org/"
 	subnetPublicKeyPath     = "/downloads/license-pubkey.pem"
 	minioDeploymentIDHeader = "x-minio-deployment-id"
 )
@@ -307,7 +307,7 @@ func getKeyFromSubnetConfig(alias, key string) (string, bool) {
 }
 
 func getSubnetAPIKeyFromConfig(alias string) string {
-	// get the subnet api_key config from MinIO if available
+	// get the subnet api_key config from libreFS if available
 	apiKey, supported := getKeyFromSubnetConfig(alias, "api_key")
 	if supported {
 		return apiKey
@@ -335,7 +335,7 @@ func setGlobalSubnetProxyFromConfig(alias string) error {
 		proxy, supported = getKeyFromSubnetConfig(alias, "proxy")
 	}
 
-	// get the subnet proxy config from MinIO if available
+	// get the subnet proxy config from libreFS if available
 	if supported && len(proxy) > 0 {
 		proxyURL, e := url.Parse(proxy)
 		if e != nil {
@@ -347,7 +347,7 @@ func setGlobalSubnetProxyFromConfig(alias string) error {
 }
 
 func getSubnetLicenseFromConfig(alias string) string {
-	// get the subnet license config from MinIO if available
+	// get the subnet license config from libreFS if available
 	lic, supported := getKeyFromSubnetConfig(alias, "license")
 	if supported {
 		return lic
@@ -400,7 +400,7 @@ func setSubnetConfig(alias, subKey, cfgVal string) {
 
 	cfgKey := "subnet " + subKey
 	_, e := client.SetConfigKV(globalContext, cfgKey+"="+cfgVal)
-	fatalIf(probe.NewError(e), "Unable to set "+cfgKey+" config on MinIO")
+	fatalIf(probe.NewError(e), "Unable to set "+cfgKey+" config on libreFS")
 }
 
 func setSubnetAPIKey(alias, apiKey string) {
