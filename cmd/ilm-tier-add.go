@@ -178,7 +178,7 @@ var supportedAWSTierSC = []string{"STANDARD", "REDUCED_REDUNDANCY", "STANDARD_IA
 // the flags contain invalid values.
 func fetchTierConfig(ctx *cli.Context, tierName string, tierType madmin.TierType) *madmin.TierConfig {
 	switch tierType {
-	case madmin.libreFS:
+	case madmin.MinIO:
 		accessKey := ctx.String("access-key")
 		secretKey := ctx.String("secret-key")
 		if accessKey == "" || secretKey == "" {
