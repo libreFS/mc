@@ -77,3 +77,68 @@ func TestValidAccessKeys(t *testing.T) {
 	equalAssert(isValidAccessKey("EXOb76bfeb1234562iu679f11588"), true, t)
 	equalAssert(isValidAccessKey("BYvgJM101sHngl2uzjXS/OBF/aMxAN06JrJ3qJlF"), true, t)
 }
+
+func TestTrimTrailingSeparator(t *testing.T) {
+	cases := []struct {
+		in   string
+		want string
+	}{
+		{"https://localhost:9000/", "https://localhost:9000"},
+		{"https://localhost:9000", "https://localhost:9000"},
+		{"/tmp/dir/", "/tmp/dir"},
+		{"/tmp/dir", "/tmp/dir"},
+		{"", ""},
+	}
+	for _, c := range cases {
+		got := trimTrailingSeparator(c.in)
+		if got != c.want {
+			t.Errorf("trimTrailingSeparator(%q) = %q, want %q", c.in, got, c.want)
+		}
+	}
+}
+
+func TestIsValidLookup(t *testing.T) {
+	cases := []struct {
+		in   string
+		want bool
+	}{
+		{"dns", true},
+		{"DNS", true},
+		{"path", true},
+		{"PATH", true},
+		{"auto", true},
+		{"AUTO", true},
+		{"  auto  ", true},
+		{"invalid", false},
+		{"", false},
+	}
+	for _, c := range cases {
+		got := isValidLookup(c.in)
+		if got != c.want {
+			t.Errorf("isValidLookup(%q) = %v, want %v", c.in, got, c.want)
+		}
+	}
+}
+
+func TestIsValidPath(t *testing.T) {
+	cases := []struct {
+		in   string
+		want bool
+	}{
+		{"on", true},
+		{"ON", true},
+		{"off", true},
+		{"OFF", true},
+		{"auto", true},
+		{"AUTO", true},
+		{"  on  ", true},
+		{"yes", false},
+		{"", false},
+	}
+	for _, c := range cases {
+		got := isValidPath(c.in)
+		if got != c.want {
+			t.Errorf("isValidPath(%q) = %v, want %v", c.in, got, c.want)
+		}
+	}
+}
