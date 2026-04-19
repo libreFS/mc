@@ -333,6 +333,8 @@ func differenceInternal(sourceURL string,
 					firstContent:  srcCtnt,
 					secondContent: tgtCtnt,
 				}
+				srcCtnt, srcOk = <-srcCh
+				tgtCtnt, tgtOk = <-tgtCh
 				continue
 			}
 			if srcSize != tgtSize {
@@ -366,8 +368,8 @@ func differenceInternal(sourceURL string,
 					secondContent: tgtCtnt,
 				}
 			} else if opts.isMetadata &&
-				!metadataEqual(srcCtnt.UserMetadata, tgtCtnt.UserMetadata) &&
-				!metadataEqual(srcCtnt.Metadata, tgtCtnt.Metadata) {
+				(!metadataEqual(srcCtnt.UserMetadata, tgtCtnt.UserMetadata) ||
+					!metadataEqual(srcCtnt.Metadata, tgtCtnt.Metadata)) {
 
 				// Regular files user requesting additional metadata to same file.
 				diffCh <- diffMessage{
