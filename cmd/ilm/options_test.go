@@ -25,6 +25,174 @@ import (
 	"github.com/minio/minio-go/v7/pkg/lifecycle"
 )
 
+// ── ToILMRule ─────────────────────────────────────────────────────────────────
+
+func TestToILMRule(t *testing.T) {
+	// expiry days rule
+	opts := LifecycleOptions{
+		ID:         "test-rule",
+		ExpiryDays: strPtr("30"),
+	}
+	rule, err := opts.ToILMRule()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if rule.ID != "test-rule" {
+		t.Errorf("ID = %q, want test-rule", rule.ID)
+	}
+	if rule.Status != "Enabled" {
+		t.Errorf("Status = %q, want Enabled", rule.Status)
+	}
+	if rule.Expiration.Days != 30 {
+		t.Errorf("Days = %d, want 30", rule.Expiration.Days)
+	}
+
+	// disabled status
+	opts2 := LifecycleOptions{
+		ExpiryDays: strPtr("7"),
+		Status:     boolPtr(false),
+	}
+	rule2, err := opts2.ToILMRule()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if rule2.Status != "Disabled" {
+		t.Errorf("Status = %q, want Disabled", rule2.Status)
+	}
+
+	// no action set → validation error
+	emptyOpts := LifecycleOptions{ID: "empty"}
+	if _, err := emptyOpts.ToILMRule(); err == nil {
+		t.Error("expected error for rule with no action")
+	}
+
+	// invalid expiry days → error
+	badOpts := LifecycleOptions{ExpiryDays: strPtr("notanumber")}
+	if _, err := badOpts.ToILMRule(); err == nil {
+		t.Error("expected error for invalid expiry days")
+	}
+
+	// noncurrent version expiry
+	ndays := 14
+	opts3 := LifecycleOptions{
+		NoncurrentVersionExpirationDays: &ndays,
+	}
+	rule3, err := opts3.ToILMRule()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if rule3.NoncurrentVersionExpiration.NoncurrentDays != 14 {
+		t.Errorf("NoncurrentDays = %d, want 14", rule3.NoncurrentVersionExpiration.NoncurrentDays)
+	}
+}
+
+// ── RemoveILMRule ─────────────────────────────────────────────────────────────
+
+func TestRemoveILMRule(t *testing.T) {
+	cfg := &lifecycle.Configuration{
+		Rules: []lifecycle.Rule{
+			{ID: "rule-1", Status: "Enabled"},
+			{ID: "rule-2", Status: "Enabled"},
+		},
+	}
+
+	// remove existing rule
+	result, err := RemoveILMRule(cfg, "rule-1")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if len(result.Rules) != 1 || result.Rules[0].ID != "rule-2" {
+		t.Errorf("after remove, rules = %v, want [rule-2]", result.Rules)
+	}
+
+	// remove non-existent rule → error
+	_, err = RemoveILMRule(cfg, "does-not-exist")
+	if err == nil {
+		t.Error("expected error removing non-existent rule ID")
+	}
+
+	// nil config → error
+	_, err = RemoveILMRule(nil, "any")
+	if err == nil {
+		t.Error("expected error for nil config")
+	}
+
+	// empty rules → error
+	_, err = RemoveILMRule(&lifecycle.Configuration{}, "any")
+	if err == nil {
+		t.Error("expected error for empty rules")
+	}
+}
+
+// ── intPtr / boolPtr ──────────────────────────────────────────────────────────
+
+func TestIntPtr(t *testing.T) {
+	p := intPtr(42)
+	if p == nil || *p != 42 {
+		t.Errorf("intPtr(42) = %v, want pointer to 42", p)
+	}
+}
+
+func TestBoolPtr(t *testing.T) {
+	p := boolPtr(true)
+	if p == nil || !*p {
+		t.Errorf("boolPtr(true) = %v, want pointer to true", p)
+	}
+	p2 := boolPtr(false)
+	if p2 == nil || *p2 {
+		t.Errorf("boolPtr(false) = %v, want pointer to false", p2)
+	}
+}
+
+// ── ApplyRuleFields ───────────────────────────────────────────────────────────
+
+func TestApplyRuleFields(t *testing.T) {
+	base := lifecycle.Rule{
+		ID:     "test-rule",
+		Status: "Enabled",
+		Expiration: lifecycle.Expiration{
+			Days: 30,
+		},
+	}
+
+	// update expiry days
+	opts := LifecycleOptions{ExpiryDays: strPtr("60")}
+	dest := base
+	if err := ApplyRuleFields(&dest, opts); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if dest.Expiration.Days != 60 {
+		t.Errorf("Days = %d, want 60", dest.Expiration.Days)
+	}
+
+	// update status to disabled
+	opts2 := LifecycleOptions{Status: boolPtr(false)}
+	dest2 := base
+	if err := ApplyRuleFields(&dest2, opts2); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if dest2.Status != "Disabled" {
+		t.Errorf("Status = %q, want Disabled", dest2.Status)
+	}
+
+	// update storage class
+	opts3 := LifecycleOptions{StorageClass: strPtr("GLACIER")}
+	dest3 := base
+	if err := ApplyRuleFields(&dest3, opts3); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if dest3.Transition.StorageClass != "GLACIER" {
+		t.Errorf("StorageClass = %q, want GLACIER", dest3.Transition.StorageClass)
+	}
+
+	// invalid expiry days → error propagated
+	opts4 := LifecycleOptions{ExpiryDays: strPtr("notanumber")}
+	dest4 := base
+	if err := ApplyRuleFields(&dest4, opts4); err == nil {
+		t.Error("expected error for invalid expiry days")
+	}
+}
+
 func TestOptionFilter(t *testing.T) {
 	emptyFilter := lifecycle.Filter{}
 	emptyOpts := LifecycleOptions{}
